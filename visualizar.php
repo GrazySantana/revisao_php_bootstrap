@@ -1,9 +1,9 @@
 <?php
 
-// Incluir a conexão com o banco de dados
+// Incluir a conexao com o banco de dados
 include_once "conexao.php";
 
-// Receber o ID via método GET 
+// Receber o ID via método GET
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
 // Verifica se o ID não está vazio
@@ -25,9 +25,8 @@ if (!empty($id)) {
         $retorna = ['status' => true, 'dados' => $row_usuario];
     } else {
         // Se não houver registros, retorna uma mensagem de erro
-        $retorna = ['staus' => false, 'msg' => "<div class='alert alert-danger' role='alert'>Erro: Nenhum usuário encontrado!</div>"];
+        $retorna = ['status' => false, 'msg' => "<div class='alert alert-danger' role='alert'>Erro: Nenhum usuário encontrado!</div>"];
     }
-
 } else {
     // Se o ID estiver vazio, retorna uma mensagem de erro
     $retorna = ['status' => false, 'msg' => "<div class='alert alert-danger' role='alert'>Erro: Nenhum usuário encontrado!</div>"];

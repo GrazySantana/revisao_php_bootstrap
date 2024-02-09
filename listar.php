@@ -14,12 +14,25 @@ if (!empty($pagina)) {
     $inicio = ($pagina * $qnt_result_pg) - $qnt_result_pg;
 
     // Criar a QUERY para recuperar os registros do BD
-    $query_usuarios = "SELECT usr.id, usr.nome, usr.email,
-                    ende.logradouro, ende.numero
-                    FROM usuarios AS usr 
-                    LEFT JOIN enderecos AS ende ON ende.usuario_id=usr.id
-                    ORDER BY usr.id DESC
-                    LIMIT $inicio, $qnt_result_pg";
+
+    //SQL (MySQL) 
+
+    // $query_usuarios = "SELECT usr.id, usr.nome, usr.email,
+    //                 ende.logradouro, ende.numero
+    //                 FROM usuarios AS usr 
+    //                 LEFT JOIN enderecos AS ende ON ende.usuario_id=usr.id
+    //                 ORDER BY usr.id DESC
+    //                 LIMIT $inicio, $qnt_result_pg";
+
+        //SQL (Postgre) 
+
+        $query_usuarios = "SELECT usr.id, usr.nome, usr.email,
+        ende.logradouro, ende.numero
+        FROM usuarios AS usr 
+        LEFT JOIN enderecos AS ende ON ende.usuario_id=usr.id
+        ORDER BY usr.id DESC
+        LIMIT $qnt_result_pg OFFSET $inicio";
+
     $result_usuarios = $conn->prepare($query_usuarios);
     $result_usuarios->execute();
 
